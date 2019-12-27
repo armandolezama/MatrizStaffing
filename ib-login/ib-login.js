@@ -4,7 +4,7 @@ import '@vaadin/vaadin-text-field/vaadin-text-field';
 import '@polymer/paper-card/paper-card.js';
 import '@vaadin/vaadin-button/vaadin-button.js';
 import '@vaadin/vaadin-text-field/vaadin-password-field.js';
-import '@polymer/paper-dialog/paper-dialog.js';
+import '@polymer/paper-toast';
 
 
 
@@ -20,7 +20,8 @@ class IbLogin extends LitElement {
       textButton: String,
       server : String,
       user : String,
-      password: String
+      password: String,
+      textToas:String
      };
   }
 
@@ -39,6 +40,7 @@ class IbLogin extends LitElement {
     this.server = '';
     this.user = '';
     this.password = '';
+    this.textToas = '';
   }
 
   render() {   
@@ -57,35 +59,25 @@ class IbLogin extends LitElement {
           <vaadin-button theme="primary" @click="${this.sendUser}">${this.textButton}</vaadin-button>
         </div>
     </div>
+    <paper-toast id="toast2" class="fit-bottom" text="${this.textToas}"></paper-toast>
       `; 
     }
 
 
-  sendUser (){
-    let valide = this.fieldvalidator();  
-    if(valide){
-      const userIronNode = this._getNode('#userIron');
-      const passwordIronNode =  this._getNode('#passwordIron');
-      const dataUser =  {
-        user : userIronNode.value,
-        password : passwordIronNode.value
-      }
-      fetch (this.server,{
-        method : 'POST',
-        body: JSON.stringify(dataUser)
-      })
-      .then(res => res.json())
-      .then( data => {
-        if(data == true){
-          userIronNode.value = '';
-          passwordIronNode.value = '';
+    sendUser (){
+      let valide = this.fieldvalidator();  
+      if(valide){
+        const userIronNode = this._getNode('#userIron');
+        const passwordIronNode =  this._getNode('#passwordIron');
+        const dataUser =  {
+          user : userIronNode.value,
+          password : passwordIronNode.value
         }
-        this.dispatchEvent( new CustomEvent('send-user-ib',{
-          detail: data
+        this.dispatchEvent(new CustomEvent('send-user-ib',{
+          detail:dataUser
         }));
-      })
+      }
     }
-  }
 
   fieldvalidator(){
     let user = this.shadowRoot.querySelector('#userIron').value.trim();
@@ -129,7 +121,8 @@ class IbLogin extends LitElement {
     if(expreg.test(user)){
       flag = true;
     }else{
-      alert('Esta intentando identificarse con un correo no valido'); 
+      this.textToas = 'Esta intentando identificarse con un correo no valido';
+      this.shadowRoot.querySelector('#toast2').open();
       flag = false;
     }
     return flag;

@@ -6,13 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script type="module">
         import '../ib-login.js';
+        import '@polymer/paper-toast/paper-toast.js';
     </script>
     <title>IbLogin</title>
 </head>
 <body>
     <style>
+            paper-toast {
+            --paper-toast-background-color: #00ACEA;
+            --paper-toast-color: white;
+            }
     </style>
     <div >
+        <paper-toast id="toast"></paper-toast>
         <p>Dar click a campos vacios</p>
         <ib-login id="demo1"  user ="" password ="" server ="https://dicss.com.mx/multidesarrollo/post.php" notePassword="El campo password esta vacío, dato obligatorio" noteuser="El campo usuario esta vacío, dato obligatorio"  textButton="Iniciar Sesión" userNameHolder ="Elena Torres" passwordHolder = "xxxxxxx" logo="../image/LogoIB.png" ></ib-login>
     </div>
@@ -35,44 +41,121 @@
         <ib-login id="demo5" user ="Edgar@asdasad" password="123123" server ="https://dicss.com.mx/multidesarrollo/post.php" notePassword="El campo password esta vacío, dato obligatorio" noteuser="El campo usuario esta vacío, dato obligatorio"  textButton="Iniciar Sesión" userNameHolder ="Elena Torres" passwordHolder = "xxxxxxx" logo="../image/LogoIB.png" ></ib-login>
     </div>
     <script>
-        document.querySelector('#demo1').addEventListener('send-user-ib',event => {
-            if(event.detail){
-                alert('Bienvenido');
+
+        valorserver=() =>{
+
+        let objet = new   Object();
+        const entry = document.querySelector('#demo1');
+        entry.addEventListener('send-user-ib', event => {
+            objet = event.detail;
+            
+        const toast = document.querySelector('#toast');
+        fetch ('https://dicss.com.mx/multidesarrollo/post.php',{
+        method : 'POST',
+        body: JSON.stringify(objet)
+                })
+        .then(res => res.json())
+        .then( data => {
+            if(data == true){
+                toast.text =  'Bienvenido';
+                toast.open();
             }else{
-                alert('El nombre de usuario o contraseña es incorrecto');
+                toast.text =  'El nombre de usuario o contraseña es incorrecto';
+                toast.open();
             }
         });
-        document.querySelector('#demo2').addEventListener('send-user-ib',event => {
-            if(event.detail){
-                alert('Bienvenido');
-            }else{
-                alert('El nombre de usuario o contraseña es incorrecto');
+        });
+        }
 
+        valorserver2 = () =>{
+        let objet2 = new   Object();
+        const entry2 = document.querySelector('#demo2');
+        entry2.addEventListener('send-user-ib', event => {
+            objet2 = event.detail;
+            
+        const toast = document.querySelector('#toast');
+        fetch ('https://dicss.com.mx/multidesarrollo/post.php',{
+        method : 'POST',
+        body: JSON.stringify(objet)
+                })
+        .then(res => res.json())
+        .then( data => {
+            if(data == true){
+                toast.text =  'Bienvenido';
+                toast.open();
+            }else{
+                toast.text =  'El nombre de usuario o contraseña es incorrecto';
+                toast.open();
             }
         });
-        document.querySelector('#demo3').addEventListener('send-user-ib',event => {
-            if(event.detail){
-                alert('Bienvenido');
-            }else{
-                alert('El nombre de usuario o contraseña es incorrecto');
+        });
+        }
 
+
+¿
+        let objet3 = new   Object();
+        const entry3 = document.querySelector('#demo3');
+        entry3.addEventListener('send-user-ib', event => {
+            objet3 = event.detail;
+            
+        const toast = document.querySelector('#toast');
+        fetch ('https://dicss.com.mx/multidesarrollo/post.php',{
+        method : 'POST',
+        body: JSON.stringify(objet)
+                })
+        .then(res => res.json())
+        .then( data => {
+            if(data == true){
+                toast.text =  'Bienvenido';
+                toast.open();
+            }else{
+                toast.text =  'El nombre de usuario o contraseña es incorrecto';
+                toast.open();
             }
         });
-        document.querySelector('#demo4').addEventListener('send-user-ib',event => {
-            if(event.detail){
-                alert('Bienvenido');
-            }else{
-                alert('El nombre de usuario o contraseña es incorrecto');
+        });
 
+        let objet4 = new   Object();
+        const entry4 = document.querySelector('#demo4');
+        entry4.addEventListener('send-user-ib', event => {
+            objet4 = event.detail;
+            
+        const toast = document.querySelector('#toast');
+        fetch ('https://dicss.com.mx/multidesarrollo/post.php',{
+        method : 'POST',
+        body: JSON.stringify(objet)
+                })
+        .then(res => res.json())
+        .then( data => {
+            if(data == true){
+                toast.text =  'Bienvenido';
+                toast.open();
+            }else{
+                toast.text =  'El nombre de usuario o contraseña es incorrecto';
+                toast.open();
             }
         });
-        document.querySelector('#demo5').addEventListener('send-user-ib',event => {
-            if(event.detail){
-                alert('Bienvenido');
+        });
+        let objet5 = new   Object();
+        const entry5 = document.querySelector('#demo5');
+        entry5.addEventListener('send-user-ib', event => {
+            objet5 = event.detail;
+            
+        const toast = document.querySelector('#toast');
+        fetch ('https://dicss.com.mx/multidesarrollo/post.php',{
+        method : 'POST',
+        body: JSON.stringify(objet)
+                })
+        .then(res => res.json())
+        .then( data => {
+            if(data == true){
+                toast.text =  'Bienvenido';
+                toast.open();
             }else{
-                alert('El nombre de usuario o contraseña es incorrecto');
-
+                toast.text =  'El nombre de usuario o contraseña es incorrecto';
+                toast.open();
             }
+        });
         });
     </script>
 </body>
