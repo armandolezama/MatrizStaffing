@@ -1,8 +1,9 @@
 import { html, LitElement } from 'lit-element';
 import style from './hours-form-styles.js';
-import '@vaadin/vaadin-text-field/vaadin-integer-field'
-import '@vaadin/vaadin-combo-box/vaadin-combo-box'
-import '@vaadin/vaadin-button/vaadin-button'
+import '@vaadin/vaadin-text-field/vaadin-integer-field';
+import '@vaadin/vaadin-combo-box/vaadin-combo-box';
+import '@vaadin/vaadin-button/vaadin-button';
+import '@vaadin/vaadin-dialog/vaadin-dialog';
 import { registerStyles, css } from '@vaadin/vaadin-themable-mixin/register-styles'; 
 
 /**
@@ -38,7 +39,7 @@ class HoursForm extends LitElement {
     this.years = years;
     customElements.whenDefined('vaadin-combo-box').then(()=>{
       const comboBox= this.shadowRoot.querySelector('vaadin-combo-box');
-      comboBox.items = this.years;
+     // comboBox.items = this.years;
      });
   }
 
@@ -137,7 +138,11 @@ class HoursForm extends LitElement {
 
   render() {
     return html`
-        <div class="col ">
+    <style>
+      
+    </style>
+    <h2 class="center-item">${this.title}</h2>
+        <div class="dialog-message">
           <h2 class="center-item">${this.title}</h2>
           <div class="row content-center">
             <div class="col">
@@ -210,8 +215,5 @@ registerStyles('vaadin-text-field', css`
         width: 130px;
       }
 `);
-
-
-
 
 window.customElements.define("hours-form", HoursForm);
