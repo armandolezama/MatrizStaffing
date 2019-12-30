@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="module">
+        import '../ib-modal-component.js';
+        import '@vaadin/vaadin-dialog/vaadin-dialog.js';
+    </script>
+    <title>IbModalComponent</title>
+</head>
+<body>
+    <vaadin-button >Show dialog</vaadin-button>
+    <ib-modal-component></ib-modal-component>
+    <script>
+        
+        const btn = document.querySelector('vaadin-button');
+        btn.onclick = ()=>{
+            document.querySelector('ib-modal-component').openModal()
+        }; 
+
+        document.querySelector('ib-modal-component').addEventListener('created', event => {
+            console.log(event.detail);
+        });
+        //document.querySelector(ib-modal).oprenModal()
+    </script>
+</body>
+</html>
