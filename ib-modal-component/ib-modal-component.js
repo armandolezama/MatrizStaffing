@@ -18,16 +18,18 @@ class IbModalComponent extends LitElement {
     }
 
     openModal(){
-      console.log(this.style)
       const dialog = this.shadowRoot.querySelector('vaadin-dialog');
       dialog.opened = true;
 
+      console.log(this.shadowRoot.querySelector('hours-form'));
       dialog.addEventListener('edited', event => {
+        console.log("hola edit")
         this.dispatchEvent(new CustomEvent('edited', {
           detail: event.detail
         }))    
     })
       dialog.addEventListener('created', event => {
+        console.log("hola create")
         this.dispatchEvent(new CustomEvent('created', {
           detail: event.detail
         }))  
