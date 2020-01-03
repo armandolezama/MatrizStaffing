@@ -96,7 +96,6 @@ class HoursTable extends LitElement {
   }
 
   __renderAll(){
-    console.log('is rendering')
       const grid = this.shadowRoot.querySelector('#grid');
       grid.innerHTML='';
       customElements.whenDefined(grid.localName).then(() => {
@@ -133,6 +132,7 @@ class HoursTable extends LitElement {
     registerButton.addEventListener('click', () => {
       this.shadowRoot.querySelector('hours-form').display();
       this.shadowRoot.querySelector('hours-form').create();
+      this.shadowRoot.querySelector('hours-form').clearMonths();
     });
     const form = this.shadowRoot.querySelector('hours-form');
     customElements.whenDefined(form.localName).then(() => {
@@ -159,7 +159,7 @@ class HoursTable extends LitElement {
           <paper-grid id="grid">
             
           </paper-grid>
-          <paper-button >Registrar</paper-button>
+          <paper-button>Registrar</paper-button>
         </div>
         <hours-form></hours-form>
       `;

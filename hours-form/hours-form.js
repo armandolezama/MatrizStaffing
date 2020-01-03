@@ -61,7 +61,7 @@ class HoursForm extends LitElement {
   }
 
   clearMonths(){
-    const integerField = this.shadowRoot.querySelectorAll('.month');
+    const integerField = this.shadowRoot.querySelectorAll('.month input');
     for(const month of integerField){
       month.value = '';
     }

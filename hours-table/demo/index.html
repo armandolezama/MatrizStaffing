@@ -25,8 +25,6 @@
         <div>
             <h2>Insertar año</h2>
             <hours-table id="demo-insert" url="./assets/Acciones.png"></hours-table>
-            <input id="first-year" type="text">
-            <button id="insert-year" >Insertar año</button>
         </div>
 
         <div>
@@ -38,8 +36,6 @@
         <div>
             <h2>Nuevo año y evento</h2>
             <hours-table id="demo-two" url="./assets/Acciones.png"></hours-table>
-            <input id="second-year" type="text">
-            <button id="second-year-button">Insertar año</button>
             <paper-toast id="toast-two"></paper-toast>
         </div>
 
@@ -161,16 +157,6 @@
                 paperToastTwo.text = event.detail.year;
                 paperToastTwo.open()
             } )
-            const insertYear = document.querySelector('#insert-year')
-            insertYear.addEventListener('click', () => {
-                demoInsert.years = [...demoInsert.years, {year: firstNewYear.value}]
-            })
-
-            const insertSecondYear = document.querySelector('#second-year-button')
-            insertSecondYear.addEventListener('click', () => {
-                demoOfTwo.addNewYear(secondNewYear.value)
-            })
-            
             
         </script>
 </body>
